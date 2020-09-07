@@ -12,7 +12,7 @@ describe('for object', () => {
     expect(person['name']).toEqual(expectedName);
   });
 
-  fit('should get undefined if property is not defined', () => {
+  it('should get undefined if property is not defined', () => {
     const person = { name: 'Bob' };
 
     // <--start
@@ -184,7 +184,7 @@ describe('for object', () => {
     expect(words).toEqual(expected);
   });
 
-  fit('should simulate constructor using function, and use function\'s prototype as definition', () => {
+  it('should simulate constructor using function, and use function\'s prototype as definition', () => {
     class Rabbit {
       constructor(type) { this.type = type; }
 
@@ -211,7 +211,7 @@ describe('for object', () => {
     // * prototypeOfRabbitFunction
     // * functionPrototype
     const expectedPrototypeOfRabbitInstance = Rabbit('weird');
-    const expectedPrototypeOfRabbitFunction = Object.prototype;
+    const expectedPrototypeOfRabbitFunction = Rabbit.prototype;
     // --end->
 
     expect(prototypeOfRabbitInstance).toBe(expectedPrototypeOfRabbitInstance);
