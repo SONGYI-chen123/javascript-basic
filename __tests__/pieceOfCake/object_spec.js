@@ -202,16 +202,19 @@ describe('for object', () => {
     expect(rabbit.speak('?_?')).toEqual(expected);
 
     const prototypeOfRabbitInstance = Object.getPrototypeOf(rabbit);
+    const rabbitFunctionPrototype = Rabbit.prototype;
     const prototypeOfRabbitFunction = Object.getPrototypeOf(Rabbit);
-
+    const functionPrototype = Function.prototype;
+      
+    }
     // <--start
     // Please write down the correct value. You should choose the correct value from:
     // * prototypeOfRabbitInstance
     // * rabbitFunctionPrototype
     // * prototypeOfRabbitFunction
     // * functionPrototype
-    const expectedPrototypeOfRabbitInstance = Rabbit('weird');
-    const expectedPrototypeOfRabbitFunction = Rabbit.prototype;
+    const expectedPrototypeOfRabbitInstance = rabbitFunctionPrototype;
+    const expectedPrototypeOfRabbitFunction = functionPrototype;
     // --end->
 
     expect(prototypeOfRabbitInstance).toBe(expectedPrototypeOfRabbitInstance);
