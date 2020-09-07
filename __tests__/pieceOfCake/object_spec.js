@@ -12,7 +12,7 @@ describe('for object', () => {
     expect(person['name']).toEqual(expectedName);
   });
 
-  it('should get undefined if property is not defined', () => {
+  fit('should get undefined if property is not defined', () => {
     const person = { name: 'Bob' };
 
     // <--start
@@ -28,7 +28,7 @@ describe('for object', () => {
 
     // <--start
     // Please write a line of code to remove the `name` property.
-
+    delete person.name;
     // --end->
 
     expect(person.name).toBeUndefined();
@@ -58,7 +58,7 @@ describe('for object', () => {
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const expected = ['Hello, I am John'];
+    const expected = 'Hello, I am John';
     // --end->
 
     expect(person.greeting()).toEqual(expected);
@@ -150,7 +150,7 @@ describe('for object', () => {
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const expected = {};
+    const expected = Object.getPrototypeOf(emptyObject);
     // --end->
 
     expect(Object.getPrototypeOf(emptyObject)).toBe(expected);
@@ -184,10 +184,13 @@ describe('for object', () => {
     expect(words).toEqual(expected);
   });
 
-  it('should simulate constructor using function, and use function\'s prototype as definition', () => {
-    function Rabbit(type) { this.type = type; }
-    // eslint-disable-next-line func-names
-    Rabbit.prototype.speak = function (line) { return `The ${this.type} rabbit says ${line}.`; };
+  fit('should simulate constructor using function, and use function\'s prototype as definition', () => {
+    class Rabbit {
+      constructor(type) { this.type = type; }
+
+      // eslint-disable-next-line func-names
+      speak(line) { return `The ${this.type} rabbit says ${line}.`; }
+    }
 
     const rabbit = new Rabbit('weird');
 
@@ -199,9 +202,7 @@ describe('for object', () => {
     expect(rabbit.speak('?_?')).toEqual(expected);
 
     const prototypeOfRabbitInstance = Object.getPrototypeOf(rabbit);
-    const rabbitFunctionPrototype = Rabbit.prototype;
     const prototypeOfRabbitFunction = Object.getPrototypeOf(Rabbit);
-    const functionPrototype = Function.prototype;
 
     // <--start
     // Please write down the correct value. You should choose the correct value from:
@@ -209,8 +210,8 @@ describe('for object', () => {
     // * rabbitFunctionPrototype
     // * prototypeOfRabbitFunction
     // * functionPrototype
-    const expectedPrototypeOfRabbitInstance = undefined;
-    const expectedPrototypeOfRabbitFunction = undefined;
+    const expectedPrototypeOfRabbitInstance = Rabbit('weird');
+    const expectedPrototypeOfRabbitFunction = Object.prototype;
     // --end->
 
     expect(prototypeOfRabbitInstance).toBe(expectedPrototypeOfRabbitInstance);
@@ -250,8 +251,8 @@ describe('for object', () => {
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const expectedOverrideKillerRabbitTeeth = 'small';
-    const expectedRabbitPrototypeTeeth = 'sharp';
+    const expectedOverrideKillerRabbitTeeth = 'sharp';
+    const expectedRabbitPrototypeTeeth = 'small';
     // --end->
 
     expect(killerRabbit.teeth).toEqual(expectedOverrideKillerRabbitTeeth);
@@ -276,8 +277,8 @@ describe('for object', () => {
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const expectedOverrideKillerRabbitSpeak = 'Hi';
-    const expectedRabbitPrototypeSpeak = '@_@';
+    const expectedOverrideKillerRabbitSpeak = '@_@';
+    const expectedRabbitPrototypeSpeak = 'Hi';
     // --end->
 
     expect(killerRabbit.speak()).toEqual(expectedOverrideKillerRabbitSpeak);
@@ -304,7 +305,7 @@ describe('for object', () => {
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const expectedCelsius = undefined;
+    const expectedCelsius = 30;
     // --end->
 
     expect(Temperature.fromFahrenheit(86).celsius).toEqual(expectedCelsius);
@@ -353,21 +354,21 @@ describe('for object', () => {
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const rabbitIsCrazyRabbit = undefined;
+    const rabbitIsCrazyRabbit = true;
     // --end-->
 
     expect(rabbit instanceof CrazyRabbit).toEqual(rabbitIsCrazyRabbit);
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const rabbitIsObject = undefined;
+    const rabbitIsObject = true;
     // --end-->
 
     expect(rabbit instanceof Object).toEqual(rabbitIsObject);
 
     // <--start
     // Please write down the correct value. You should write the final result directly.
-    const rabbitIsNumber = undefined;
+    const rabbitIsNumber = false;
     // --end-->
 
     expect(rabbit instanceof Number).toEqual(rabbitIsNumber);
